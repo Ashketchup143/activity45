@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -22,7 +24,7 @@ class Login extends StatelessWidget {
         
         child:Column(
           children: 
-                  [_buildLogo(),
+                  [createLogo(context),
                     ElevatedButton(onPressed: () {
                     Navigator.pushNamed(context, "/appbar");
                   }, 
@@ -41,6 +43,32 @@ class Login extends StatelessWidget {
               
     );
   }
+  Widget createLogo(BuildContext context){
+    switch(Theme.of(context).platform){
+      case TargetPlatform.android:
+      return Image.asset("assets/Android_robot.png");   
+      case TargetPlatform.fuchsia:
+        // TODO: Handle this case.
+        break;
+      case TargetPlatform.iOS:
+        // TODO: Handle this case.
+        break;
+      case TargetPlatform.linux:
+        // TODO: Handle this case.
+        break;
+      case TargetPlatform.macOS:
+        // TODO: Handle this case.
+        break;
+      case TargetPlatform.windows:
+      return Image.asset("assets/windows.png");
+      default:
+      return Image.asset("assets/google.png");
+    }
+
+    return Container();
+
+  }
+
   Widget _buildLogo() {
     if (defaultTargetPlatform == TargetPlatform) {
       return Image.asset("assets/Android_robot.png");
